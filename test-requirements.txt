@@ -1,7 +1,6 @@
-cx-Freeze>=4.3.3
-Cython>=0.21
 flake8>=2.2.3
 mccabe>=0.2.1
-nose>=1.3.4
 pep8>=1.5.7
+py>=1.4.25
 pyflakes>=0.8.1
+pytest>=2.6.3

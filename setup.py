@@ -19,11 +19,24 @@ try:
 except ImportError:
     from setuptools import setup
     EXIST_CX_FREEZE = False
+from setuptools.command.test import test as TestCommand
 import os.path
 import glob
 from itertools import chain
 
 version = '1.0.0'
+
+
+class PyTest(TestCommand):
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+
+    def run_tests(self):
+        # 外部で egg を読み込ませたくないならここでインポートしてください
+        import pytest
+        pytest.main(self.test_args)
 
 
 def _make_extensions(ext_name_with_wildcard):
@@ -73,9 +86,8 @@ setup(
     # package_data=, # works for bdist, not for sdist. MANIFET.in works in reverse
     install_requires=_install_requires(),
     tests_require=_test_requires(),
-    test_suite='nose.collector',
     zip_safe=False,
     ext_modules=extensions,
     scripts=[],
-    cmdclass={'build_py': build_py},
+    cmdclass={'build_py': build_py, 'test': PyTest},
 )
