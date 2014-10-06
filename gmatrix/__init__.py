@@ -1,1 +1,1 @@
-from .matrix import Matrix, zeros
+from .core import Matrix, zeros
