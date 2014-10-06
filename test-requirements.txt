@@ -4,3 +4,4 @@ pep8>=1.5.7
 py>=1.4.25
 pyflakes>=0.8.1
 pytest>=2.6.3
+tox>=1.8.0

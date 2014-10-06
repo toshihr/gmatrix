@@ -1,4 +1,9 @@
 from itertools import chain
+try:
+    # python 3
+    from functools import reduce
+except:
+    pass
 
 
 class Matrix:
